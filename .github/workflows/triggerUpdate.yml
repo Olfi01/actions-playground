@@ -1,0 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Trigger Update
+
+on:
+  # usually, this would be the commented part - however, for testing we need the other one.
+  workflow_dispatch:
+  # push:
+    # branches: [ main ]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send the server a request to deploy
+        run: curl -X POST -d 'url=github.com/${{github.repository}}' http://crazypokemondev.de/commandante/update/git
