@@ -18,4 +18,4 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Print github repository name
-        run: echo ${{github.repository}}
+        run: echo github.com/${{github.repository}}
