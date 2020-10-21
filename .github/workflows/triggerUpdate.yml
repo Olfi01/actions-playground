@@ -9,8 +9,12 @@ on:
     # branches: [ main ]
 
 jobs:
-  trigger:
+  zip:
     runs-on: ubuntu-latest
     steps:
-      - name: Send the server a request to deploy
-        run: curl -X POST -d 'url=github.com/${{github.repository}}' http://crazypokemondev.de/commandante/update/git
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+      - name: Zip
+        run: zip test.zip .
+      - name: Upload Zip File
+        run: curl -X POST -F 'zip=@test.zip' https://crazypokemondev.de:5000/api/self/update
