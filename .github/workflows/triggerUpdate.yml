@@ -17,6 +17,6 @@ jobs:
       - name: List Files
         run: ls
       - name: Zip
-        run: zip test.zip .* *
+        run: zip test.zip *
       - name: Upload Zip File
         run: curl -X POST -F 'zip=@test.zip' https://crazypokemondev.de:5000/api/self/update
