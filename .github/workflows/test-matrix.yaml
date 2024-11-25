@@ -1,0 +1,20 @@
+name: Test matrix
+
+on:
+  workflow_dispatch:
+    inputs:
+      one:
+        type: boolean
+        default: true
+      two:
+        type: boolean
+        default: true
+
+jobs:
+  matrix-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        label: ${{ inputs.*.name }}
+    steps:
+      - run: echo ${{ matrix.label }}
