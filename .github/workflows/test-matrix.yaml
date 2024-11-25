@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        label: ${{ inputs.*.id }}
+        label: ${{ toJSON(inputs.*) }}
     steps:
       - run: echo ${{ matrix.label }}
