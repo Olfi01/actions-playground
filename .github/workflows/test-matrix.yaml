@@ -20,6 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        label: ${{ needs.prepare-job.outputs.matrix }}
+        label: ${{ fromJSON(needs.prepare-job.outputs.matrix) }}
     steps:
       - run: echo ${{ matrix.label }}
