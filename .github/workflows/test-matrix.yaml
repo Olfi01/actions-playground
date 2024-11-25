@@ -14,6 +14,7 @@ jobs:
   prepare-job:
     runs-on: ubuntu-latest
     steps: 
+      - run: echo $(echo '${{ toJSON(inputs) }}' | jq -c '[to_entries[] | select(.value).key]')
       - run: echo "matrix=$(echo '${{ toJSON(inputs) }}' | jq -c '[to_entries[] | select(.value).key]')" >> $GITHUB_OUTPUT
   matrix-job:
     needs: prepare-job
