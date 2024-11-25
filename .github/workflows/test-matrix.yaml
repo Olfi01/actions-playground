@@ -9,12 +9,19 @@ on:
       two:
         type: boolean
         default: true
+env:
+  matrix: ${{ format("[{0}]", join()) }}
 
 jobs:
+  prepare-job:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo '${{ inputs }}'
   matrix-job:
+    needs: prepare-job
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        label: ${{ toJSON(inputs.*) }}
+        label: ${{ inputs.* }}
     steps:
       - run: echo ${{ matrix.label }}
