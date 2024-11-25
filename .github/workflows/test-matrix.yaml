@@ -13,9 +13,12 @@ on:
 jobs:
   prepare-job:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.out.outputs.matrix }}
     steps: 
       - run: echo $(echo '${{ toJSON(inputs) }}' | jq -c '[to_entries[] | select(.value).key]')
-      - run: echo "matrix=$(echo '${{ toJSON(inputs) }}' | jq -c '[to_entries[] | select(.value).key]')" >> $GITHUB_OUTPUT
+      - id: out
+        run: echo "matrix=$(echo '${{ toJSON(inputs) }}' | jq -c '[to_entries[] | select(.value).key]')" >> $GITHUB_OUTPUT
   matrix-job:
     needs: prepare-job
     runs-on: ubuntu-latest
