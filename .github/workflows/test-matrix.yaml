@@ -9,8 +9,6 @@ on:
       two:
         type: boolean
         default: true
-env:
-  matrix: ${{ format("[{0}]", join()) }}
 
 jobs:
   prepare-job:
