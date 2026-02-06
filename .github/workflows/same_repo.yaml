@@ -1,0 +1,7 @@
+on: workflow_dispatch
+
+jobs:
+  run:
+    uses: ./.github/workflows/secrets_test.yaml
+    secrets:
+      test-secret: ${{ secrets.NOT_A_SECRET }}
